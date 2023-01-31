@@ -1,8 +1,10 @@
 # Team Profile Generator>
-![Alt text](Assets/Screen%20Shot%202023-01-31%20at%202.14.21%20AM.png)
+
+<img width="1440" alt="Screen Shot 2023-01-31 at 2 14 21 AM" src="https://user-images.githubusercontent.com/115536248/215737000-73a81083-a82e-4b77-906f-a87f683f1ab2.png">
 
 // walkthrough video
-[label](../../../Downloads/Untitled_%20Jan%2031,%202023%202_27%20AM.webm)
+[Untitled_ Jan 31, 2023 2_27 AM.webm](https://user-images.githubusercontent.com/115536248/215737063-6974d0aa-53dc-4e84-bed9-695128161869.webm)
+
 ## Description
 
 The motivation for this project was to build a Node.js command-line application that takes in information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. The application will be invoked with the following command:
