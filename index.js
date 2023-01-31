@@ -1,3 +1,4 @@
+// this is the global file that runs the application
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
@@ -6,19 +7,20 @@ const path = require("path");
 const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
 const outputPath = path.join(OUTPUT_DIR, "index.html");
-const render = require("./src/template");
-
-const teamMembers = [];
-
+// const render = require("./src/template.js");("./lib/Employee");
+const generateEmployees = require(".../src/template.js");
+//an array that will taKe in all the employees
+const Employees = [];
+// this is the function that will start the application
 function startApp() {
-    function createEmployees(){ 
+    function createEmployees() {
         inquirer.prompt([
             {
                 type: "list",
                 name: "addEmployeePrompt",
                 message: "Which type of team member would you like to add?",
-                choices: [ "Engineer", "Intern", "No more team members"]
-            }]).then(function({userInput}) {
+                choices: ["Engineer", "Intern", "No more team members"] }])
+                .then(function ({ userInput }) {
                 switch (userInput.addEmployeePrompt) {
                     case "Engineer":
                         addEngineer();
@@ -37,6 +39,7 @@ function startApp() {
                 }
             })
     }
+    //this function will add the engineer to the team
     function addEngineer() {
         inquirer.prompt([
             {
@@ -59,12 +62,13 @@ function startApp() {
                 name: "engineerGithub",
                 message: "What is the engineer's github username?",
             }
-        ]).then(function({engineerName, engineerId, engineerEmail, engineerGithub}) {
+        ]).then(function ({ engineerName, engineerId, engineerEmail, engineerGithub }) {
             const engineer = new Engineer(engineerName, engineerId, engineerEmail, engineerGithub);
-            teamMembers.push(engineer);
+            Employees.push(engineer);
             createEmployees();
         })
     }
+    //this function will add the intern to the team
     function addIntern() {
         inquirer.prompt([
             {
@@ -87,12 +91,13 @@ function startApp() {
                 name: "internSchool",
                 message: "What is the intern's school?",
             }
-        ]).then(function({internName, internId, internEmail, internSchool}) {
+        ]).then(function ({ internName, internId, internEmail, internSchool }) {
             const intern = new Intern(internName, internId, internEmail, internSchool);
-            teamMembers.push(intern);
+            Employees.push(intern);
             createEmployees();
         })
     }
+    //this function will add the manager to the team
     function addManager() {
         inquirer.prompt([
             {
@@ -115,20 +120,19 @@ function startApp() {
                 name: "managerOfficeNumber",
                 message: "What is the manager's office number?",
             }
-        ]).then(function({managerName, managerId, managerEmail, managerOfficeNumber}) {
+        ]).then(function ({ managerName, managerId, managerEmail, managerOfficeNumber }) {
             const manager = new Manager(managerName, managerId, managerEmail, managerOfficeNumber);
-            teamMembers.push(manager);
+            Employees.push(manager);
             createEmployees();
         })
     }
-
+    // this function will build the team
     function buildTeam() {
-         console.log(teamMembers);
-
-         fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+        console.log(Employees);
+        fs.writeFileSync(outputPath, generateEmployees(Employees), "utf-8");
     }
+    // call the function to create employees
     createEmployees();
 }
-
+// call the function to start the application
 startApp();
-    
