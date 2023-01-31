@@ -36,36 +36,36 @@ const generateEmployees = team => {
     // this is intern card
     const generateIntern = intern => {
         return `
-        div class="card employee-card">
-            div class="card-header">
+        <div class="card worker-card">
+        <div class="employee-header bg-primary">
             <h2 class="card-title">${intern.getName()}</h2>
             <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
             </div>
-            div class="card-body">
+            <div class="card-body">
             <ul class="list-group">
-            <li class="list-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-            <li class="list-item">ID: ${intern.getId()}</li>
-            <li class="list-item">School: ${intern.getSchool()}</li>
+            <li class="list-group-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+            <li class="list-group-item">ID: ${intern.getId()}</li>
+            <li class="list-group-item">School: ${intern.getSchool()}</li>
             </ul>
             </div>
         </div> `;
     };
     // this is the html that will be generated for the employee cards
-    const html = [];
+    return team.map(employee => {
+        if (employee.getRole() === "Manager") {
+            return generateManager(employee);
+        }
 
-    html.push(team.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager))
-        .map(manager => generateManager(manager)));
-        
-        html.push(team.filter(employee => employee.getRole() === "Engineer").map(engineer => generateEngineer(engineer))
-        .map(engineer => generateEngineer(engineer))
-        .join(""));
+        if (employee.getRole() === "Engineer") {
+            return generateEngineer(employee);
+        }
 
-    html.push(team.filter(employee => employee.getRole() === "Intern").map(intern => generateIntern(intern))
-        .map(intern => generateIntern(intern))
-        .join(""));
+        if (employee.getRole() === "Intern") {
+            return generateIntern(employee);
+        }
+    })
+        .join('');
 
-        return html.join("");
-    
 };
 // this is the html that will be generated for the employee cards and the team page
 
@@ -96,8 +96,10 @@ module.exports = team => {
     ${generateEmployees(team)}
     </div>
     </div>
+    </div>
     </body>
     </html> `;
 };
 
 // module.exports = generateEmployees;
+

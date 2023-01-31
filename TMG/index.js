@@ -32,7 +32,7 @@ function startApp() {
                         addManager();
                         break;
                     case "No more team members":
-                        // buildTeam()
+                        buildTeam()
                         break;
                     default:
                         buildTeam();
