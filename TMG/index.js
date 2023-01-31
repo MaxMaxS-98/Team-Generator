@@ -32,7 +32,7 @@ function startApp() {
                         addManager();
                         break;
                     case "No more team members":
-                        buildTeam();
+                        // buildTeam()
                         break;
                     default:
                         buildTeam();
@@ -63,8 +63,8 @@ function startApp() {
                 name: "engineerGithub",
                 message: "What is the engineer's github username?",
             }
-        ]).then(function ( engineerName, engineerId, engineerEmail, engineerGithub ) {
-            const engineer = new Engineer(engineerName, engineerId, engineerEmail, engineerGithub);
+        ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
             Employees.push(engineer);
             createEmployees();
         })
@@ -92,8 +92,8 @@ function startApp() {
                 name: "internSchool",
                 message: "What is the intern's school?",
             }
-        ]).then(function ({ internName, internId, internEmail, internSchool }) {
-            const intern = new Intern(internName, internId, internEmail, internSchool);
+        ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
             Employees.push(intern);
             createEmployees();
         })
@@ -121,8 +121,8 @@ function startApp() {
                 name: "managerOfficeNumber",
                 message: "What is the manager's office number?",
             }
-        ]).then(function ({ managerName, managerId, managerEmail, managerOfficeNumber }) {
-            const manager = new Manager(managerName, managerId, managerEmail, managerOfficeNumber);
+        ]).then(answers => {
+            const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
             Employees.push(manager);
             createEmployees();
         })
@@ -130,7 +130,7 @@ function startApp() {
     // this function will build the team
     function buildTeam() {
         console.log(Employees);
-        fs.writeFileSync(outputPath, generateEmployees(Employees), "utf-8");
+        fs.writeFileSync(outputPath, generateEmployees(Employees), "UTF-8");
     }
     // call the function to create employees
     createEmployees();

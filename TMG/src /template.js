@@ -1,23 +1,24 @@
 const generateEmployees = team => {
 
-// this is manager card
+    // this is manager card
     const generateManager = manager => {
         return `
         <div class="card worker-card">
         <div class="employee-header bg-primary">
-            <h2 class="employee-name">${manager.getName}</h2>
-            <h3 class="employee-role"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole}</h3>
+            <h2 class="employee-name">${manager.getName()}</h2>
+            <h3 class="employee-role"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
             <div class="card-body">
             </div>
                 <ul class="list-group">
-                    <li class="list-group-item">${manager.getId}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail}">${manager.getEmail}</a></li>
-                    <li class="list-group-item">${manager.getOfficeNumber}</li>
+                    <li class="list-group-item">${manager.getId()}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
+                    <li class="list-group-item">${manager.getOfficeNumber()}</li>
                 </ul>
+            </div>
             </div>`;
     };
 
-// this is engineer card
+    // this is engineer card
     const generateEngineer = engineer => {
         return `
         <div class="card worker-card">
@@ -40,35 +41,36 @@ const generateEmployees = team => {
             <h2 class="card-title">${intern.getName()}</h2>
             <h3 class="card-title"><i class="fas fa-user-graduate mr-2"></i>${intern.getRole()}</h3>
             </div>
-            div class="c-body">
-            <ul class="li-group">
-            <li class="li-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
-            <li class="li-item">ID: ${intern.getId()}</li>
-            <li class="li-item">School: ${intern.getSchool()}</li>
+            div class="card-body">
+            <ul class="list-group">
+            <li class="list-item">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></li>
+            <li class="list-item">ID: ${intern.getId()}</li>
+            <li class="list-item">School: ${intern.getSchool()}</li>
             </ul>
             </div>
         </div> `;
     };
-// this is the html that will be generated for the employee cards
+    // this is the html that will be generated for the employee cards
     const html = [];
 
     html.push(team.filter(employee => employee.getRole() === "Manager").map(manager => generateManager(manager))
-    .map(manager => generateManager(manager)));
-
-    html.push(team.filter(employee => employee.getRole() === "Engineer").map(engineer => generateEngineer(engineer))
-    .map(engineer => generateEngineer(engineer)));
+        .map(manager => generateManager(manager)));
+        
+        html.push(team.filter(employee => employee.getRole() === "Engineer").map(engineer => generateEngineer(engineer))
+        .map(engineer => generateEngineer(engineer))
+        .join(""));
 
     html.push(team.filter(employee => employee.getRole() === "Intern").map(intern => generateIntern(intern))
-    .map(intern => generateIntern(intern))
-    .join(""));
+        .map(intern => generateIntern(intern))
+        .join(""));
 
-    return html.join("");
-
+        return html.join("");
+    
 };
 // this is the html that will be generated for the employee cards and the team page
-const team = ()=>{
+
+module.exports = team => {
     return `
-    
     <!DOCTYPE html>
     <html lang="en">
     
@@ -79,7 +81,6 @@ const team = ()=>{
         <title>Team Generator</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <link rel="stylesheet" href="style.css">
     </head>
     <body>
     <div class="container-fluid">
@@ -99,5 +100,4 @@ const team = ()=>{
     </html> `;
 };
 
-module.exports = generateEmployees;
-             
+// module.exports = generateEmployees;
