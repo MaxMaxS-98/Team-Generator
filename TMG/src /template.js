@@ -5,14 +5,14 @@ const generateEmployees = team => {
         return `
         <div class="card worker-card">
         <div class="employee-header bg-primary">
-            <h2 class="employee-name">${manager.getName()}</h2>
-            <h3 class="employee-role"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole()}</h3>
+            <h2 class="employee-name">${manager.getName}</h2>
+            <h3 class="employee-role"><i class="fas fa-mug-hot mr-2"></i>${manager.getRole}</h3>
             <div class="card-body">
             </div>
                 <ul class="list-group">
-                    <li class="list-group-item">${manager.getId()}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></li>
-                    <li class="list-group-item">${manager.getOfficeNumber()}</li>
+                    <li class="list-group-item">${manager.getId}</li>
+                    <li class="list-group-item">Email: <a href="mailto:${manager.getEmail}">${manager.getEmail}</a></li>
+                    <li class="list-group-item">${manager.getOfficeNumber}</li>
                 </ul>
             </div>`;
     };
@@ -66,7 +66,7 @@ const generateEmployees = team => {
 
 };
 // this is the html that will be generated for the employee cards and the team page
-const team=()=>{
+const team = ()=>{
     return `
     
     <!DOCTYPE html>
@@ -99,5 +99,5 @@ const team=()=>{
     </html> `;
 };
 
-module.exports = team;
+module.exports = generateEmployees;
              

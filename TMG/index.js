@@ -8,7 +8,7 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
 const outputPath = path.join(OUTPUT_DIR, "index.html");
 // const render = require("./src/template.js");("./lib/Employee");
-const generateEmployees = require("./src/template.js");
+const generateEmployees = require("./src /template");
 //an array that will taKe in all the employees
 const Employees = [];
 // this is the function that will start the application
@@ -19,8 +19,8 @@ function startApp() {
                 type: "list",
                 name: "addEmployeePrompt",
                 message: "Which type of team member would you like to add?",
-                choices: ["Engineer", "Intern", "No more team members"] }])
-                .then(function ({ userInput }) {
+                choices: ["Engineer", "Intern","Manager","No more team members"] }])
+                .then(function (userInput) {
                 switch (userInput.addEmployeePrompt) {
                     case "Engineer":
                         addEngineer();
@@ -39,6 +39,7 @@ function startApp() {
                 }
             })
     }
+
     //this function will add the engineer to the team
     function addEngineer() {
         inquirer.prompt([
@@ -62,7 +63,7 @@ function startApp() {
                 name: "engineerGithub",
                 message: "What is the engineer's github username?",
             }
-        ]).then(function ({ engineerName, engineerId, engineerEmail, engineerGithub }) {
+        ]).then(function ( engineerName, engineerId, engineerEmail, engineerGithub ) {
             const engineer = new Engineer(engineerName, engineerId, engineerEmail, engineerGithub);
             Employees.push(engineer);
             createEmployees();
@@ -136,3 +137,4 @@ function startApp() {
 }
 // call the function to start the application
 startApp();
+
