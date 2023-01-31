@@ -8,7 +8,7 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
 const outputPath = path.join(OUTPUT_DIR, "index.html");
 // const render = require("./src/template.js");("./lib/Employee");
-const generateEmployees = require(".../src/template.js");
+const generateEmployees = require("./src/template.js");
 //an array that will taKe in all the employees
 const Employees = [];
 // this is the function that will start the application
